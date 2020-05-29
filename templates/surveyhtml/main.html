@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<!-- Meta, title, CSS, favicons, etc. -->
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+
+		<title>
+			真核生物基因组survey分析报告
+		</title>
+		<!-- Bootstrap core CSS -->
+		<!-- 新 Bootstrap 核心 CSS 文件 -->
+		<link rel="stylesheet" href="static/css/bootstrap.min.css">
+		<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+		<!--<link rel="stylesheet" href="static/css/bootstrap-theme.min.css">-->
+		<!-- Optional Bootstrap Theme -->
+		<!--<link href="data:text/css;charset=utf-8," data-href="static/css/bootstrap-theme.min.css" rel="stylesheet" id="bs-theme-stylesheet">-->
+		<!-- Documentation extras -->
+		<link href="./static/css/docs.min.css" rel="stylesheet">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		<script src="./static/js/html5shiv.js"></script>
+		<script src="./static/js//respond.min.js"></script>
+		<![endif]-->
+		<link href="./static/ccs/docxsearch.ccs" rel="stylesheet">
+		<link href="./static/css/mydoc.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="static/css/jquery.ad-gallery.css">
+		<link rel="stylesheet" type="text/css" href="static/css/font-awesome/css/font-awesome.min.css">
+		<!-- Favicons -->
+		<link rel="apple-touch-icon" href="">
+		<link rel="icon" href="">
+		<style type="text/css">
+
+		</style>
+	</head>
+
+	<body>
+		<a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+		<!-- Docs page layout -->
+
+		<div class="container bs-docs-container">
+			<div class="row">
+
+				<!--导航部分-->
+				<div class="col-md-3">
+					<!--导航栏-->
+					<div class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" role="complementary">
+						<ul class="nav bs-docs-sidenav text-right">
+							<li>
+								<a href="#a">
+									<img src="static/image/sidebar_icon_active_1.png">
+									1 项目基本信息
+								</a>
+							</li>
+
+							<li>
+								<a href="#b">
+									<img src="static/image/sidebar_icon_active_2.png">
+									2 项目流程
+								</a>
+								<ul class="nav">
+									<li><a href="#b_1">2.1 实验流程</a></li>
+									<li><a href="#b_2">2.2 生物信息分析流程</a></li>
+								</ul>
+							</li>
+
+							<li>
+								<a href="#c">
+									<img src="static/image/sidebar_icon_active_3.png">
+									3 分析结果
+								</a>
+                <ul class="nav">
+									<!-- <li><a href="#b_1">2.1 实验结果</a></li> -->
+									<li><a href="#c_1">3.1 数据质控</a></li>
+									<li><a href="#c_2">3.2 数据污染评估</a></li>
+									<li><a href="#c_3">3.3 基因组大小和杂合度估计</a></li>
+								</ul>
+							</li>
+
+							<li>
+								<a href="#d">
+									<img src="static/image/sidebar_icon_active_6.png">
+									4 分析结论及建议
+								</a>
+
+							</li>
+
+							<li>
+								<a href="#e">
+									<img src="static/image/sidebar_icon_active_4.png">
+									5 分析方法
+								</a>
+								<ul class="nav">
+									<li><a href="#e_1">5.1 分析软件</a></li>
+									<li><a href="#e_2">5.2 二代数据介绍及质控方法</a></li>
+									<li><a href="#e_3">5.3 K-mer分析方法</a></li>
+								</ul>
+							</li>
+
+							<li>
+								<a href="#f">
+									<img src="static/image/sidebar_icon_active_7.png">
+									6 帮助文档
+								</a>
+
+								<ul class="nav">
+									<li><a href="#f_1">6.1 结果文件及数据说明</a></li>
+									<li><a href="#f_2">6.2 相关技术介绍</a></li>
+
+							<li>
+								<a href="#g">
+									<img src="static/image/sidebar_icon_active_5.png">
+									7 参考文献
+								</a>
+							</li>
+
+							<li>
+								<a href="#h">
+									<img src="static/image/sidebar_icon_active_6.png">
+									8 联系我们
+								</a>
+							</li>
+						</ul>
+					</div>
+
+					<!--导航栏脚注-->
+					<div style="position:absolute;left:25%;bottom:20px;padding-right: 20px;max-width: 220px;">
+						<img src="static/image/nextomics_logo.png" width="100%" style="margin-bottom: 20px">
+						<p class="text-left" style="font-size: 12px">TEL：400-027-1221</p>
+						<p class="text-left" style="font-size: 12px">E-mail：project@grandomics.com</p>
+					</div>
+				</div>
+				<!--导航部分-->
+
+				<!--内容部分-->
+				<div class="col-md-7" role="main" id="main">
+					<!--cover-->
+					<div class="text-center" data-section-name="home" id="cover">
+						<h1 style="padding-top: 10%"></h1>
+						<h1 style="padding-top: 10%">真核生物基因组</h1>
+						<h3>survey分析报告</h3>
+						<div align="left" style="padding-left: 30%; padding-top: 12%" >
+							<h4>项目名称：{{project}}</h4>
+							<h4>合同编号：{{id}}</h4>
+							<h4>样本编号：{{name}}</h4>
+							<h4>测序平台：{{sequencer}}</h4>
+							<h4>分&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp析：{{author}}</h4>
+							<h4>审&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp核：{{reviewer}}</h4>
+							<h4 style="padding-bottom: 20%">日&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp期：{{year}}年{{month}}月{{day}}日</h4>
+						</div>
+
+						<h4>武汉未来组生物科技有限公司</h4>
+						<!--<hr style="margin-top: 22%; height:1px;border:none;border-top:1px dashed">-->
+					</div>
+					<!--cover-->
+					<!--a-->
+					<div class="bs-docs-section" id="content">
+						<h3 id="a" class="page-header">1 项目基本信息</h3>
+						<div class="content_table">
+							<!-- <table border="1" align="center" id="big"> -->
+							<table  width="60%" border="1" cellspacing="5" cellpadding="10"  bgcolor="#cccccc" class="tabtop13" align="center">
+								<tbody>
+									<tr>
+										<td width="20%" height="50" class="btbg font-center titfont"><b>样本编号</b></td>
+										<td width="20%" height="50" class="btbg font-center titfont" align="center"><b>{{name}}</b></td>
+									</tr>
+								</tbody>
+								<tbody>
+									<tr>
+										<td width="20%" height="50" class="btbg font-center titfont"><b>物种名</b></td>
+										<td width="20%" height="50" class="btbg font-center titfont" align="center"><b>{{species}} {{strain}}</b></td>
+									</tr>
+								</tbody>
+								<tbody>
+									<tr>
+										<td width="20%" height="50" class="btbg font-center titfont"><b>测序平台</b></td>
+										<td width="20%" height="50" class="btbg font-center titfont" align="center"><b>{{sequencer}}</b></td>
+									</tr>
+								</tbody>
+								<tbody>
+									<tr>
+										<td width="20%" height="50" class="btbg font-center titfont"><b>测序数据量</b></td>
+										<td width="20%" height="50" class="btbg font-center titfont" align="center"><b>{{raw_data}} bp</b></td>
+									</tr>
+								</tbody>
+								<tbody>
+									<tr>
+										<td width="20%" height="50" class="btbg font-center titfont"><b>预估基因组大小</b></td>
+										<td width="20%" height="50" class="btbg font-center titfont" align="center"><b>{{estimate_size}} bp</b></td>
+									</tr>
+								</tbody>
+							</tbody>
+							<tbody>
+								<tr>
+									<td width="20%" height="50" class="btbg font-center titfont"><b>预估基因组杂合度</b></td>
+									<td width="20%" height="50" class="btbg font-center titfont" align="center"><b>{{heterozygosity}}</b></td>
+								</tr>
+							</tbody>
+							</table>
+						</div>
+						<font size="1" color="red">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp备注：基因组大小和杂合度是依据软件{{software}}的算法评估所得，仅作为参考用于初步判断基因组复杂程度。</font><br/>
+					<!--a-->
+
+					<!--b-->
+					<div class="bs-docs-section" id="content">
+						<h3 id="b" class="page-header">2 项目流程</h3>
+						<h4 id="b_1">2.1 实验流程</h4>
+						<p>利用给定的样品进行DNA抽提，随后对抽提DNA进行质量检测评估。对质量检测合格的DNA样品进行高通量测序（High Throughput Sequencing, HTS）的文库制备和上机测序，最终获得相应核苷酸序列数据。对于不合格的DNA样品，如果有样品剩余则重新进行DNA抽提，没有样品剩余则需要合作方重新安排样品寄送。实验流程参见图2.1。</p>
+						<div class="content_img"><img src="images/image_fix/1_survey_sequencing.png" width="50%"></div>
+						<h6>图2.1 基因组survey测序流程</h6>
+						<br/>
+
+						<h4 id="b_2">2.2 生物信息分析流程</h4>
+						<p>第一：原始下机序列文件（raw data）的质量控制，过滤低质量序列，质控包括：</p>
+						<ul class="decimal-lower-roman">
+							<li>去掉reads的接头序列；</li>
+							<li>截掉reads两端测序不准确的碱基，直接截取左端5个碱基，右端5个碱基；</li>
+							<li>去除当中还含有N的reads；</li>
+							<li>当一条reads中超过20%的碱基质量分数小于20，则舍弃该reads所对应的一对reads。</li>
+						</ul>
+						<p>第二：基于质控后序列文件（clean data）进行包括基因组大小和基因组杂合度的评估。首先，根据合作方提供的基因组大小预估值（基于流式细胞仪评估或近源物种的先验知识）随机获取30-50X的序列数据，对于不足30X的数据集则利用全部数据信息进行后续分析；然后，通过jellyfish [1] 对序列文件进行K-mer的计数和统计；随后，分别利用偏正态分布模型（skew normal distribution model），负二项式模型 (negative binomial model) 对K-mer 数据进行拟合分析，通过两种算法对应的软件FindGSE[2] 与 GenomeScope[3] 进行基因组大小以及杂合度的评估，并生成最终基因组评估结果。由于FindGSE与GenomeScope适用于二倍体简单基因组，因此当基因组较为复杂（高杂合、多倍体等）时，利用Kmerfreq[4]进行评估，并利用拟南芥基因组模拟对应深度的短片段数据，在杂合率不同梯度组合情况下进行K-mer曲线拟合来估计样本的杂合率。具体分析流程见图2.2。</p>
+						<div  class="content_img"><img src="images/image_fix/2_survey_analysis.png" width="60%"></div>
+						<h6>图2.2 基因组survey分析流程</h6>
+						<br/>
+					</div>
+					<!--b-->
+
+					<!--c-->
+					<div class="bs-docs-section" id="content">
+						<h3 id="c" class="page-header">3 分析结果</h3>
+
+						<!--3.1 数据质控 -->
+						<h4 id="c_1">3.1 数据质控</h4>
+						<p>利用fastp对原始数据进行过滤，然后对原始数据（Raw data）及过滤后数据（Clean data）进行质量统计。具体结果见表3.1，及图3.1、图3.2和图3.3。</p>
+						<h6>表3.1 数据产量统计</h6>
+						<div class="content_table">
+							<!-- <table border="1" align="center" id="big"> -->
+							<table class="table table-bordered table-striped table-hover" >
+								<thead>
+									<tr>
+										<th><b>Sample</b></th>
+										<th><b>Total reads</b></th>
+										<th><b>Total bases</b></th>
+										<th><b>Clean reads</b></th>
+										<th><b>Clean bases</b></th>
+										<th><b>Q20 rate (%)</b></th>
+										<th><b>Q30 rate (%)</b></th>
+										<th><b>GC (%)</b></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><b>{{table_data.0}}</b></td>
+										<td>{{table_data.1}}</td>
+										<td>{{table_data.2}}</td>
+										<td>{{table_data.3}}</td>
+										<td>{{table_data.4}}</td>
+										<td>{{table_data.5}}</td>
+										<td>{{table_data.6}}</td>
+										<td>{{table_data.7}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="content_img">
+							<div  class="content_img"><img src="images/{{name}}.base_quality.png" width="60%"></div>
+						</div>
+						<h6>图3.1 碱基质量分布图</h6>
+						<font size="1" color="red">说明：上图为碱基质量分布图，横坐标为reads的位置，纵坐标为测序质量值，其中红色线条为质量值中位数，蓝色线条是质量值平均值，箱线图的上下线分别是质量值的最大值和最小值。</font><br/>
+						<div class="content_img">
+							<div  class="content_img"><img src="images/{{name}}.base_content.png" width="60%"></div>
+						</div>
+						<h6>图3.2 碱基含量分布图</h6>
+						<font size="1" color="red">说明：上图为碱基含量分布图：其中，蓝色线条，橙色线条，绿色线条，红色线条分别是A,T,G,C四种碱基的含量，由于二代测序的本身特性，前十几个bp碱基含量会有波动。从碱基含量分布图中可以看出，在十几个bp以后，A与T、G与C含量基本一致，数据碱基含量合格。</font><br/>
+						<div class="content_img">
+							<div  class="content_img"><img src="images/{{name}}.base_gc.png" width="60%"></div>
+						</div>
+						<h6>图3.3 平均GC分布图</h6>
+						<font size="1" color="red">说明：上图为平均GC含量分布图；横轴表示GC含量，纵轴表示不同GC含量对应的read的占比，曲线形状接近正态，出现偏差往往是由于文库的污染、部分reads构成的子集有偏差或物种特异性。</font><br/>
+
+						<br/>
+
+						<!-- 3.2 数据污染评估 -->
+						<h4 id="c_2">3.2 数据污染评估</h4>
+						<p>随机取100,000条质控后的reads，利用blastn将其与nt数据进行比对，统计reads在nt库中的分布情况及比对上的物种分布，结果信息见表3.2及图3.4。</p>
+						<div class="content_img">
+							<div  class="content_img"><img src="images/{{name}}.top10_species.png" width="60%"></div>
+						</div>
+						<h6>图3.4 主要物种分布图</h6>
+						<h6>表3.2 物种分布统计 </h6>
+						<div class="content_table">
+							<table class="table table-bordered table-striped table-hover">
+							<!-- <table border="1" align="center" id="big" cellspacing="0" cellpadding="0"> -->
+								<thead>
+									<tr>
+										<th><b>Species</b></th>
+										<th><b>Reads Number</b></th>
+										<th><b>Taxonomy</b></th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for table in table_species %}
+									<tr>
+										<td><b>{{table.0}}</b></td>
+										<td>{{table.1}}</td>
+										<td>{{table.2}}</td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						<font size="1" color="red">注意：这里只展示部分结果，Unmap表示没有比对上NT库的reads数目，其他的为物种名字，按照比对上的reads数目从高到低依次往下排列。</font><br/>
+						</div>
+            <br/>
+
+            {% if homogeneous %}
+						<!-- 3.3 基因组大小和杂合度估计 -->
+						<h4 id="c_3">3.3 基因组大小和杂合度估计</h4>
+						<p>基于K-mer分析的结果，利用FindGSE预估基因组大小为{{findgse_genome}} bp (图3.5a)，而利用GenomeScope预估基因组大小为{{scope_genome}} bp （图3.5b）。</p>
+						<p>两种分析方法得到的结果相近（差异≤20%），因此推断目标物种基因组大小在 {{average_genome}} bp 左右（{{min_genome}} bp - {{max_genome}} bp）。表3.3中总结了软件分析结果中目标物种的基因组大小、杂合度和重复度。</p>
+						<div class="content_img">
+							<img src="images/{{name}}.findgse.png" width="45%"><img src="images/{{name}}.genomescope.png" width="45%">
+						</div>
+						<h6>图3.5 样本{{name}} K-mer分布曲线</h6>
+						<br/>
+
+						<h6>表3.3 样本{{name}}基因组预估结果</h6>
+						<div class="content_table">
+							<!-- <table border="1" align="center" id="big"> -->
+							<table class="table table-bordered table-striped table-hover" >
+								<thead>
+									<tr>
+										<th><b>Software</b></th>
+										<th><b>K-mer</b></th>
+										<th><b>Genome_size (bp)</b></th>
+										<th><b>Heterozygous ratio (%)</b></th>
+										<th><b>Repeat ratio (%)</b></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><b>FindGSE</b></td>
+										<td>{{kmer}}</td>
+										<td>{{table_findgse.0}}</td>
+										<td>{{table_findgse.1}}</td>
+										<td>{{table_findgse.2}}</td>
+									</tr>
+								</tbody>
+								<tbody>
+									<tr>
+										<td><b>GenomeScope</b></td>
+										<td>{{kmer}}</td>
+										<td>{{table_scope.0}}</td>
+										<td>{{table_scope.1}}</td>
+										<td>{{table_scope.2}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<br/>
+
+            {% else %}
+						<!-- 3.3 基因组大小和杂合度估计 -->
+						<h4 id="c_3">3.3 基因组大小和杂合度估计</h4>
+						<p>样本基因组较为复杂（可能为高杂合或多倍体等），需利用Kmerfreq[4]进行评估，并利用拟南芥基因组模拟对应深度的短片段数据，在杂合率不同梯度组合情况下进行K-mer曲线拟合来估计样本{{name}} 的杂合率。结果（图3.5和表3.3）显示基因组大小为{{table_kmer.4}} bp ，杂合度为{{table_kmer.5}}。</p>
+						<div  class="content_img"><img src="images/{{name}}.heterozygosity.png" width="60%"></div>
+						<h6>图3.5 样本K-mer分布曲线及杂合率模拟曲线</h6>
+						<font size="1" color="red">注：横轴为 K-mer 深度，纵轴为 K-mer 深度频率， 如AthaH0.010_X31表示（Atha）拟南芥深度杂合度(H) 1.0%，（X）为深度31，其他依次类推。</font><br/>
+						<br/>
+						<h6>表3.3 样本{{name}}的K-mer数据统计</h6>
+						<div class="content_table">
+							<!-- <table border="1" align="center" id="big"> -->
+							<table class="table table-bordered table-striped table-hover" >
+								<thead>
+									<tr>
+										<th><b>Sample</b></th>
+										<th><b>K-mer</b></th>
+										<th><b>K-mer num</b></th>
+										<th><b>K-mer depth</b></th>
+										<th><b>Genome size (bp)</b></th>
+										<th><b>Heterozygous ratio (%)</b></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><b>{{table_kmer.0}}</b></td>
+										<td>{{table_kmer.1}}</td>
+										<td>{{table_kmer.2}}</td>
+										<td>{{table_kmer.3}}</td>
+										<td>{{table_kmer.4}}</td>
+										<td>{{table_kmer.5}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<br/>
+						{% endif %}
+						<!--c-->
+
+						<!--d-->
+						<div class="bs-docs-section" id="content">
+							<h3 id="d" class="page-header">4 分析结论及建议</h3>
+							<p>(1) 原始数据{{raw_data}} bp （见表3.1）；经过质控，去除不成对匹配的reads以及低质量reads、接头污染，然后过滤掉duplication的reads，处理后得到约{{clean_data}} bp 的Clean data，数据质量良好，可用于后续分析。</p>
+							<p>(2) 数据污染评估：基于污染分析分析结果显示，{{pollution_description}}。</p>
+							{% if homogeneous %}
+							<p>(3) K-mer分析：样本{{name}} 的k-mer分析预估基因组大小为{{estimate_size}} bp左右，杂合率为{{heterozygosity }}左右。</p>
+							{% else %}
+							<p>(3) 样本{{name}} 的k-mer分析预估计基因组信息显示，该物种基因组为复杂基因组（多倍体、高杂合或数据存在污染）现有软件预估偏差较大。kmerFreq预估结果仅供参考，预估基因组大小为{{table_kmer.4}} bp 左右，杂合度为{{table_kmer.5}}左右，为更加精确预估基因组大小推荐利用流式细胞仪或近缘物种信息预估基因组大小。</p>
+							{% endif %}
+							<br/>
+							<!--d-->
+
+          <!--e-->
+					<div class="bs-docs-section" id="content">
+						<h3 id="e" class="page-header">5 分析方法</h3>
+						<h4 id="e_1">5.1 分析软件</h4>
+						<h6>表5.1 分析所用软件信息</h6>
+						<div class="content_table">
+							<table class="table table-bordered table-striped table-hover" >
+								<thead>
+									<tr>
+										<th><b>Software</b></th>
+	                                    <th><b>Version</b></th>
+                                    	<th><b>Website</b></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><b>FastQC</b></td>
+	                                    <td>-</td>
+	                                    <td><a href="https://github.com/s-andrews/FastQC" target="_blank">https://github.com/s-andrews/FastQC</a> </td>
+									</tr>
+									<tr>
+										<td><b>fastp</b></td>
+	                                    <td>v0.20.0</td>
+	                                    <td><a href="https://github.com/OpenGene/fastp" target="_blank">https://github.com/OpenGene/fastp</a> </td>
+									</tr>
+									<tr>
+										<td><b>Jellyfish</b></td>
+	                                    <td>-</td>
+	                                    <td><a href="https://github.com/gmarcais/Jellyfish" target="_blank">https://github.com/gmarcais/Jellyfish</a> </td>
+									</tr>
+									<tr>
+										<td><b>FindGSE</b></td>
+	                                    <td>-</td>
+	                                    <td><a href="https://github.com/schneebergerlab/findGSE" target="_blank">https://github.com/schneebergerlab/findGSE</a> </td>
+									</tr>
+									<tr>
+										<td><b>GenomeScope</b></td>
+	                                    <td>-</td>
+	                                    <td><a href="https://github.com/schatzlab/genomescope" target="_blank">https://github.com/schatzlab/genomescope</a> </td>
+									</tr>
+									<tr>
+										<td><b>SOAPdenovo</b></td>
+	                                    <td>2.04-r241</td>
+	                                    <td><a href="https://github.com/aquaskyline/SOAPdenovo2" target="_blank">https://github.com/aquaskyline/SOAPdenovo2</a> </td>
+									</tr>
+									<tr>
+										<td><b>bwa</b></td>
+	                                    <td>0.7.15-r1140</td>
+	                                    <td><a href="https://github.com/lh3/bwa" target="_blank">https://github.com/lh3/bwa</a> </td>
+									</tr>
+									<tr>
+										<td><b>samtools</b></td>
+	                                    <td>1.4</td>
+	                                    <td><a href="https://github.com/samtools/samtools" target="_blank">https://github.com/samtools/samtools</a> </td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<h4 id="e_2">5.2 二代数据介绍及质控方法</h4>
+							<p>测序得到的原始图像数据经碱基识别（base calling）转化为序列数据，我们称之为raw data或raw reads，结果以fastq（简称fq）文件格式存储。fastq文件为用户得到的最原始文件，里面存储reads的序列以及reads的测序质量。在fastq格式文件中每个read由四行描述：</p>
+							<font size="1" color="red">@HWI-ST966:160:C28PYACXX:8:1101:1474:2178 1:N:0:GCCAAT</font><br/>
+							<font size="1" color="red">CAAAAACTGAAAGCATTTGGTTTCTACGGAACATACATATCCAGCAACCAGGCCAACTTAATTAACTCGGGGTCTAACGAAAGCTGCGTTCTTCTCTTAG</font><br/>
+							<font size="1" color="red">+</font><br/>
+							<font size="1" color="red">BBBFFFFFFFFFFIIIIIIIFIIBFIIIIFIIIIIIIFFIIIIIBFFIIIIIIFIIIFBFIBFFFIFFFFFFFBBBBBFBBBBBFBFF7BBBBBBBBBBF</font><br/>
+							<p>其中第一行以“@”开头，随后为Illumina测序标识别符(Sequence Identifiers)和描述文字(选择性部分)；第二行是碱基序列；第三行以“+”开头，随后为Illumina测序标识别符和描述性文字(有的fq文件为了节省存储空间会省略第三行“＋”后面的内容)；第四行是对应序列的测序质量(Cock et al.,2010)。</p>
+							<p>第四行每个字符对应的ASCII值减去33，即为该碱基的测序质量值，比如B对应的ASCII值为66，那么其对应的碱基质量值是33。表3.2.1为测序错误率与测序质量值简明对应关系。如果测序错误率用E表示，碱基质量值用sQ表示，则有下列关系：</p>
+							<p style="text-align: center;">sQ = -10log10E<p>
+							<h6>表5.2 测序错误率与测序质量值简明对应关系</h6>
+							<div class="content_table">
+								<table class="table table-bordered table-striped table-hover">
+								<!-- <table border="1" align="center" id="big" cellspacing="0" cellpadding="0"> -->
+									<thead>
+										<tr>
+											<th><b>测序错误率</b></th>
+											<th><b>测序质量值</b></th>
+											<th><b>对应字符</b></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><b>5%</b></td>
+											<td>Q13</td>
+											<td>.</td>
+										</tr>
+									</tbody>
+									<tbody>
+										<tr>
+											<td><b>1%</b></td>
+											<td>Q20</td>
+											<td>5</td>
+										</tr>
+									</tbody>
+									<tbody>
+										<tr>
+											<td><b>0.1%</b></td>
+											<td>Q30</td>
+											<td>?</td>
+										</tr>
+									</tbody>
+								</table>
+						<p>基因组采用全基因组鸟枪法（WGS）策略，利用第二代测序技术，根据基因组的特点，构建二代小片段 DNA 文库，在 Illumina Hiseq Xten 上对这些片段两端进行双末端（Paired-End）测序，获得全基因组测序数据。</p>
+						<p>测序数据的产生是经过了 DNA 提取、建库、测序多个步骤的，这些步骤中产生的无效数据会对后续信息分析带来严重干扰，如测序接头序列，建库长度的偏差，以及测序错误、低质量碱基、未测出的碱基（以 N 表示）等情况，须通过一些手段将上述无效数据过滤掉，以保证分析的正常进行。</p>
+						<p>我们使用fastp (https://github.com/OpenGene/fastp)软件对原始数据进行过滤，过滤标准为：</p>
+						<p>(1)去掉reads的接头序列；</p>
+						<p>(2)截掉reads两端测序不准确的碱基，直接截取左端5个碱基，右端5个碱基；</p>
+						<p>(3)去除当中还含有N的reads；)</p>
+						<p>(4)当一条reads中超过20%的碱基质量分数小于20，则舍弃该reads所对应的一对reads。</p>
+						<p>然后使用FastQC (http://www.bioinformatics.babraham.ac.uk/projects/fastqc) 软件对clean data进行质控，若质控合格，则进行后续分析。</p>
+						</div>
+
+
+						<h4 id="e_3">5.3 K-mer分析方法</h4>
+						<p>在基因组组装前，为了用测序所得的read信息估计基因组特征，我们采用基于k-mer的分析方法来估计基因组大小和杂合率等，即从一段连续序列中迭代地选取长度为K个碱基的序列，若read长度为L，k-mer长度为K，那么可以得到L-K+1个k-mer[5]</p>
+						<p>&nbsp&nbsp&nbsp&nbsp定义：</p>
+						<p>k-mer深度分布曲线：k-mer深度~k-mer深度频率。</p>
+						<p>&nbsp&nbsp&nbsp&nbsp假设：</p>
+						<p>1）从read中逐碱基取出的所有K-mer能够遍历整个基因组。根据Lander Waterman算法，基因组大小（G）满足如下公式：</p>
+						<div  class="content_img"><img src="images\image_fix/1.png" width="15%"></div>
+						<p>Knum为K-mer个数， Kdepth为k-mer期望深度， bnum为碱基个数， bdepth为碱基期望深度。</p>
+						<p>2）k-mer深度频率分布服从泊松分布。</p>
+						<div  class="content_img"><img src="images\image_fix/2.png" width="15%"></div>
+						<p>λ为期望值，取整后得到众数，即峰值为对应的测序k-mer深度，作为k-mer深度的估计值k-mer。</p>
+						<p>根据上述两个假设，即可从所有测序read中逐碱基取k-mer，统计k-mer频数分布，计算获得k-mer深度分布曲线和深度乘积曲线。根据曲线获得k-mer深度估计值，用于估计基因组大小。</p>
+						<p>利用Jellyfish对reads进行处理，获得不同频率的k-mer信息，然后利用相应的软件（FindGSE、GenomeScope）进行基因组大小预估。而Kmerfreq利用自身算法进行K-mer剪切（K-mer<=19）统计，利用K-mer频率分布进行基因组大小预估。</p>
+					</div>
+					<!--d-->
+
+
+					<div class="bs-docs-section" id="content">
+						<h3 id="f" class="page-header">6 帮助文档</h3>
+
+						<h4 id="f_1">6.1 结果文件及数据说明</h4>
+						<p>上传目录中有Readme.txt说明，详细介绍了每个文件所代表的内容。上传的结果数据文件多以文本格式为主(fa文件、txt文件、detail文件、xls文件等)。在Windows系统下查看文件，推荐使用Editplus或 UltraEdit作为文本浏览程序，或者使用PilotEdit Lite打开超大文本文件。在Unix或Linux系统下可以浏览较大的文本文件，用Less等操作命令可以顺利地查看。</p>
+						<p>报告文件含有SVG格式的图片文件，SVG是矢量化的图片文件，可以随意放大而不失真。要查看SVG格式的文件，请先安装SVG插件。</p>
+						<p>结果文件建议使用Excel或者EditPlus等专业文本编辑器打开。</p>
+
+
+						<table class="table table-hover">
+							<tbody>
+								<tr>
+									<td>├── 01_data</td>
+									<td>测序结果目录</td>
+								</tr>
+								<tr>
+									<td>│&nbsp;&nbsp; ├── {{name}}.qc.xls</td>
+									<td>数据统计表</td>
+								</tr>
+								<tr>
+									<td>│&nbsp;&nbsp; ├── {{name}}.clean.r1.fastq.gz</td>
+									<td>质控后的二代测序序列文件</td>
+								</tr>
+								<tr>
+									<td>│&nbsp;&nbsp; ├── {{name}}.clean.r2.fastq.gz</td>
+									<td>质控后的二代测序序列文件</td>
+								</tr>
+								<tr>
+									<td>│&nbsp;&nbsp; ├── {{name}}.base_quality.pdf</td>
+									<td>二代数据的碱基质量图</td>
+								</tr>
+								<tr>
+									<td>│&nbsp;&nbsp; ├── {{name}}.base_quality.png</td>
+									<td>二代数据的碱基质量图</td>
+								</tr>
+								<tr>
+									<td>│&nbsp;&nbsp; ├── {{name}}.base_content.png</td>
+									<td>二代数据的碱基分布图</td>
+								</tr>
+								<tr>
+									<td>│&nbsp;&nbsp; ├── {{name}}.base_content.pdf</td>
+									<td>二代数据的碱基分布图</td>
+								</tr>
+								<tr>
+									<td>│&nbsp;&nbsp; ├── {{name}}.base_gc.png</td>
+									<td>二代数据的gc分布图</td>
+								</tr>
+								<tr>
+									<td>│&nbsp;&nbsp; ├── {{name}}.base_gc.pdf</td>
+									<td>二代数据的gc分布图</td>
+								</tr>
+								<tr>
+									<td>│&nbsp;&nbsp; ├── {{name}}.top10_species.tsv</td>
+									<td>排名前十的物种分布表</td>
+								</tr>
+								<tr>
+									<td>│&nbsp;&nbsp; ├── {{name}}.top10_species.pdf</td>
+									<td>排名前十的物种分布图</td>
+								</tr>
+								<tr>
+									<td>│&nbsp;&nbsp; ├── {{name}}.top10_species.pdf</td>
+									<td>排名前十的物种分布图</td>
+								</tr>
+								<tr>
+									<td>│&nbsp;&nbsp; ├── {{name}}.stat_species.tsv</td>
+									<td>详细的物种分布表</td>
+								</tr>
+								<tr>
+									<td>│&nbsp;&nbsp; ├── {{name}}.species_classify.tsv</td>
+									<td>物种分类统计表</td>
+								</tr>
+								<tr>
+									<td>│&nbsp;&nbsp; ├── {{name}}.species_annotation.txt</td>
+									<td>详细的污染比对注释信息</td>
+								</tr>
+								<tr>
+									<td>├──02_gse_scope</td>
+									<td>findgse和genomescope预估基因结果</td>
+								</tr>
+								<tr>
+									<td>│&nbsp;&nbsp; ├── {{name}}.findgse.png</td>
+									<td>findgse的K-mer分布曲线</td>
+								</tr>
+								<tr>
+									<td>│&nbsp;&nbsp; ├── {{name}}.findgse.txt</td>
+									<td>findgse预估的基因组统计结果</td>
+								</tr>
+								<tr>
+									<td>│&nbsp;&nbsp; ├── {{name}}.genomescope.png</td>
+									<td>genomescope的K-mer分布曲线</td>
+								</tr>
+								<tr>
+									<td>│&nbsp;&nbsp; ├── {{name}}.genomescope.txt</td>
+									<td>genomescope预估的基因组统计结果</td>
+								</tr>
+								<tr>
+									<td>│&nbsp;&nbsp; ├── {{name}}.histogram.txt</td>
+									<td>k-mer分布</td>
+								</tr>
+								<tr>
+									<td>├── 03_Kmerfreq</td>
+									<td>Kmerfreq预估基因结果</td>
+								</tr>
+								<tr>
+									<td>│&nbsp;&nbsp; ├── {{name}}.kmer.pdf</td>
+									<td>Kmerfreq的kmer分布图</td>
+								</tr>
+								<tr>
+									<td>│&nbsp;&nbsp; ├── {{name}}.kmer.png</td>
+									<td>Kmerfreq的kmer分布图</td>
+								</tr>
+								<tr>
+									<td>│&nbsp;&nbsp; ├── {{name}}.heterozygosity.png</td>
+									<td>杂合度模拟图</td>
+								</tr>
+								<tr>
+									<td>│&nbsp;&nbsp; ├── {{name}}.heterozygosity.pdf</td>
+									<td>杂合度模拟图</td>
+								</tr>
+								<tr>
+									<td>│&nbsp;&nbsp; ├── {{name}}.heterozygosity.xls</td>
+									<td>基因组杂合度统计表</td>
+								</tr>
+								<tr>
+									<td>│&nbsp;&nbsp; ├── {{name}}.kmerfreq.stat</td>
+									<td>kmerfreq计算的k-mer分布</td>
+								</tr>
+							</tbody>
+						</table>
+						<br/>
+
+						<h4 id="f_2">6.2 相关技术介绍</h4>
+						<p>从早期的Sanger测序到第二代高通量测序、再到现在的单分子测序技术（第三代高通量测序），DNA测序技术一直推动着生命科学研究的发展。</p>
+						<p>基于Sanger法原理的测序仪经历了多次技术升级，但低通量、高成本的缺点仍然制约了人类对各种大基因组物种的组学研究。1990年开始，新的测序方法（Next generation sequencing）开始初具雏形，并在随后的若干年中不断发展，最终形成了以Illumina NovaSeq6000和MGISEQ-2000为主要平台类型的第二代高通量测序技术（以及被称为2.5代测序技术的Complete Genomics），它突破了Sanger法在通量和成本上的瓶颈，从此人类全基因组重测序技术开始被大量应用于医学研究；也带动了基因组、转录组学和表观基因组学等领域的高通量测序研究，同时强化了多组学相结合的生物信息分析思路。</p>
+						<p>基因组Survey基于小片段文库的低深度测序数据，通过生物信息学方法，评估基因组的大小及复杂程度等情况，以确定适合该物种的全基因组测序研究策略。是初步了解某一物种基因组特征的有效方法。</p>
+						<br/>
+					</div>
+					<!--d-->
+
+
+					<!--e-->
+					<div class="bs-docs-section" id="content">
+						<h3 id="g" class="page-header">7 参考文献</h3>
+						<ul class="decimal-leading-zero">
+							<li>Marcais, G. and C. Kingsford, A fast, lock-free approach for efficient parallel counting of occurrences of k-mers. Bioinformatics, 2011. 27(6): p. 764-70.</li>
+							<li>Sun, H., DIng, J., Piednoël, M. & Schneeberger, K. FindGSE: Estimating genome size variation within human and Arabidopsis using k -mer frequencies. Bioinformatics 34, 550–557 (2018).</li>
+							<li>Vurture, G. W. et al. GenomeScope: Fast reference-free genome profiling from short reads. Bioinformatics 33, 2202–2204 (2017).</li>
+							<li>Luo, R., et al., SOAPdenovo2: an empirically improved memory-efficient short-read de novo assembler. Gigascience, 2012. 1(1): p. 18.</li>
+							<li>Liu, B., et al., Estimation of genomic characteristics by analyzing k-mer frequency in de novo genome projects. Quantitative Biology, 2013.</li>
+							<li>Li, R., et al., De novo assembly of human genomes with massively parallel short read sequencing. Genome Research, 2010. 20(2): p. 265-272.</li>
+						</ul>
+					</div>
+					<!--e-->
+
+					<!--f-->
+					<div class="bs-docs-section" id="content">
+						<h3 id="h" class="page-header">8 联系我们</h3>
+						<p>武汉未来组生物科技有限公司（Nextomics Biosciences Co., Ltd）于2011年8月8日成立于武汉光谷生物城，目前在北京生命科学园成立了兄弟公司希望组且在美国费城设立有分支机构。</p>
+						<p>作为一家专注于第三代测序技术服务的公司，未来组早在2013年就成功开发了基于PacBio第三代单分子实时测序平台的生物信息分析流程，于2016年创建了Sequel基因组学中心并于2017年9月成功搭建Oxford Nanopore测序平台。2018年初，未来组又获得了Nanopore认证服务供应商资质，并正式面向全球提供GridION/PromethION等平台的测序及生物信息学分析服务。</p>
+						<p>2018年7月，未来组迁至武汉软件新城智慧健康园，占地4500m2，成立了基因组编辑中心和武汉希望组医学检验实验室，且拥有PacBio、Oxford Nanopore、MGISEQ、BioNano光学图谱及Hi-C染色体构象捕获等技术和平台，同时在华为云、天河二号及阿里云上搭建高性能集群用于生信分析，为高等院校和科研院所提供动植物基因组、全长转录组、表观基因组、微生物基因组、宏基因组和结构变异检测等领域的科研服务。</p>
+						<p>通过三代测序生物信息学工具和流程的开发，未来组解决了复杂动植物基因组、微生物基因组、全长转录组、微生物群体研究及人类基因组变异检测等领域的技术瓶颈，并推出了“TOP1000昆虫基因组计划”、“个人参考基因组服务计划”、“华夏万人结构变异计划”等，推动了基因组学研究的升级换代。因为专注于三代测序技术开发和应用推广，未来组成为众多科研机构优先合作的三代测序基因组中心，已完成了数百个三代测序科研项目，合作发表了一系列高质量的三代技术文章。</p>
+						<p>未来组致力于打造世界领先的三代测序基因组中心，在承诺高标准交付指标的同时将进一步大幅压缩项目服务周期，为合作伙伴提供完善的基因测序分析服务。</p>
+
+						<div class="row" style="margin-top: 150px">
+							<div class="col-xs-10 col-xs-offset-1">
+
+								<div class="row">
+									<div class="col-xs-7 " style="background:url('static/image/line.jpg') no-repeat right ">
+										<table border=0 style="line-height:1">
+											<tr>
+												<td width=50 height=40>
+													<i class="fa fa-map-marker fa-2x"></i>
+												</td>
+												<td >
+													<b>ADDRESS</b><hr style="margin:0px; width:55px;"/>武汉市花城大道软件新城2期C11栋
+												</td>
+											</tr>
+											<tr>
+												<td width=50 height=40>
+													<i class="fa fa-phone fa-2x"></i>
+												</td>
+												<td>
+													<b>TELEPHONE</b><hr style="margin:0px; width:55px;"/>400-027-1221
+												</td>
+											</tr>
+											<tr>
+												<td width=50 height=40>
+													<i class="fa fa-envelope fa-2x"></i>
+												</td>
+												<td>
+													<b>E-MAIL</b><hr style="margin:0px; width:55px;"/>support@grandomics.com
+												</td>
+											</tr>
+											<tr>
+												<td width=50 height=40>
+													<i class="fa fa-globe fa-2x"></i>
+												</td>
+												<td>
+													<b>WEBSITE</b><hr style="margin:0px; width:55px;"/>www.nextomics.cn
+												</td>
+											</tr>
+										</table>
+									</div>
+									<div class="col-xs-3 col-xs-offset-1" >
+										<div style="width:112px; padding-top:0px; text-align: center">
+											<img src="static/image/erweima.jpg">
+											<b><br/>未来组微信公众号</b>
+											<b>扫码立即关注</b>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<!--f-->
+				</div>
+				<!--内容部分-->
+
+				<div class="col-md-2 hidden-print">
+					<button class="btn" style="position: fixed;top: 10px;right: 6%" onclick="myprint()">
+						<i class="fa fa-print fa-2x" aria-hidden="true"></i>
+					</button>
+				</div>
+
+			</div>
+			</div>
+
+		</div>
+
+		<!-- Bootstrap core JavaScript
+		================================================== -->
+		<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+		<script src="static/js/jquery.min.js"></script>
+		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+		<script src="static/js/bootstrap.min.js"></script>
+		<script src="./static/js/docs.min.js"></script>
+		<!-- Analytics
+		================================================== -->
+		<!--<script src="./static/js/jquery.easing.1.3.js"></script>
+		<script src="./static/js/scrollify.min.js"></script>
+		<script src="./static/js/main.js"></script>-->
+		<script type="text/javascript" src="static/js/jquery.min.js"></script>
+		<script type="text/javascript" src="static/js/jquery.ad-gallery.js"></script>
+		<script type="text/javascript" src="static/js/zzsc.js"></script>
+		<!--<script type="text/javascript" src="static/js/html2canvas.js"></script>
+		<script type="text/javascript" src="static/js/jspdf.debug.js"></script>-->
+		<script>
+			$(document).ready(function(){
+				//$("#cover").css("height",$(window).height()); //封面高度为屏幕高度
+				$("#cover").css("height", 1250);
+				// $("img").attr("crossorigin","*");
+			});
+			/*在ad-gallery插件的基础上添加了图片搜索的功能
+			*实现：匹配图片文件名的开头，匹配到的图片显示，未匹配的不显示，为空则全部显示
+			*/
+			function genescarh(t){
+				// var img_list_e = t.parent().nextAll(".ad-nav").find(".ad-thumb-list");
+				var img_list_e = t.parent().nextAll(".ad-nav").find(".ad-thumb-list").find("img");
+				// console.log(t.val())
+				var reg=new RegExp("^"+t.val());
+				$(".ad-thumbs").animate({scrollLeft: '0px'}); //每次搜索将预览图置左
+				for(var i=0;i<img_list_e.length;i++){
+					var img_name = img_list_e[i].getAttribute("src").split("/").pop();
+					if(reg.test(img_name)){
+						// console.log(img_list_e[i]);
+						img_list_e[i].style.display="inline";
+					}else{
+						// console.log(img_list_e[i]);
+						img_list_e[i].style.display="none";
+					}
+				}
+			}
+			function download_pdf(){
+				// var pdf = new jsPDF('p','pt','a4');
+				// pdf.internal.scaleFactor = 1;
+				// var options = {
+										// 		pagesplit: true
+				// };
+				// //$('.pdf-wrapper')
+				// pdf.addHTML($("#main"),options,function() {
+							// 	pdf.save('web1111.pdf');
+				// });
+			}
+			/*@打印pdf函数，使用浏览器打印功能
+			*将显示不全的表格和导航图片都显示出来
+			*/
+			function myprint(){
+				// console.log($("table.table"));
+				//
+				for(var i=0;i<$("table.table").length;i++){
+					$('table.table')[i].setAttribute('style','TABLE-LAYOUT:fixed;WORD-BREAK:break-all');
+				}
+				$(".ad-gallery").each(function(){
+					$(this).addClass("hidden-print");
+					if (!$(this).find('.ad-my').length){
+						// console.log($(this));
+						$(this).after('<div class="ad-my"></div>');
+						$(this).children(".ad-nav").find('img').each(function(){
+							$(".ad-my").append('<img src=' + this.src + '>');
+						})
+					}
+
+				});
+				window.print();
+				$("table.table").each(function(){
+					$(this).removeAttr('style');
+				});
+				$(".ad-my").remove();
+			}
+		</script>
+	</body>
+</html>
