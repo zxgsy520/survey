@@ -5,7 +5,7 @@ Eukaryotic genome size assessment process based on second-generation sequencing
 Third-party
 -----------
 
-Flye package includes some third-party software:
+survey package includes some third-party software:
 * [python](https://www.python.org/)
 * [R](https://www.r-project.org/)
 * [fastp](https://github.com/OpenGene/fastp)
