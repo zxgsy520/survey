@@ -18,4 +18,5 @@ survey package includes some third-party software:
 * [minimap2](https://github.com/lh3/minimap2)
 * [samtools](https://https://github.com/samtools/samtools)
 * [sam2ngs](https://github.com/zxgsy520/sam2ngs)
-* [blast](https://github.com/zxgsy520/sam2ngs)
+* [blast](https://blast.ncbi.nlm.nih.gov/Blast.cgi)
+* [ghostscriptsharp](https://github.com/mephraim/ghostscriptsharp)
