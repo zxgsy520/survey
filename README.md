@@ -20,3 +20,7 @@ survey package includes some third-party software:
 * [sam2ngs](https://github.com/zxgsy520/sam2ngs)
 * [blast](https://blast.ncbi.nlm.nih.gov/Blast.cgi)
 * [ghostscriptsharp](https://github.com/mephraim/ghostscriptsharp)
+* [genomescope](https://github.com/schatzlab/genomescope)
+* [findGSE](https://github.com/schneebergerlab/findGSE)
+
+
