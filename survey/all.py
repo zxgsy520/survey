@@ -18,9 +18,9 @@ from survey.parser import add_all_args
 
 LOG = logging.getLogger(__name__)
 
-__version__ = "v2.0.0"
+__version__ = "v2.1.0"
 __author__ = ("Xingguo Zhang",)
-__email__ = "1131978210@qq.com"
+__email__ = "invicoun@foxmail.com"
 __all__ = []
 
 

@@ -115,6 +115,10 @@ def create_kmc_task(reads, name, kingdom, kmer_length, thread, job_type, work_di
         "version": get_version(SOFTWARE_VERSION["jellyfish"]),
         "option": "off"
     }
+    option["survey"] = {
+        "version": "v2.1.0",
+        "website": "https://github.com/zxgsy520/survey"
+    }
 
     memory = thread*4
     if memory >=20:
