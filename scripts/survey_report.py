@@ -9,34 +9,32 @@ species=Unknow
 strain=A18
 sequencer=Illumina
 author=张兴国
-reviewer=尹羲农
+reviewer=汤冬
 homogeneous=True
 assembly=True
 pollution_description= 数据存在污染对后续的分析会有影响
 depth_description=样本的基因组碱基深度主要分布在0-120x；基因平均GC含量主要分布在20-70%。基因组GC-Depth中有明显分离的聚团现象，基因组碱基深度有明显分离，说明基因组中含有其他外源污染
 """
 import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
 import json
-import argparse
+import shutil
 import logging
 import os.path
-import shutil
-from datetime import datetime
+import argparse
 
+from datetime import datetime
 from jinja2 import Template
 from docxtpl import DocxTemplate
 try:
-    from ConfigParser import ConfigParser
+    from ConfigParser import RawConfigParser
 except:
-    from configparser import ConfigParser
+    from configparser import RawConfigParser
 
 LOG = logging.getLogger(__name__)
 
-__version__ = "0.1.0"
+__version__ = "2.2.1"
 __author__ = ("Xingguo Zhang",)
-__email__ = "1131978210@qq.com"
+__email__ = "invicoun@foxmail.com"
 __all__ = []
 
 
@@ -85,6 +83,41 @@ def mkdir(d):
     return d
 
 
+def read_picture(pictures):
+
+    r = []
+
+    for i in pictures:
+        i = check_path(i)
+
+        r.append(i)
+        for j in ['.svg', '.pdf']:
+            ni = i.replace('.png', j)
+
+            if not os.path.exists(ni):
+                continue
+
+            r.append(ni)
+
+    return r
+
+
+def bp2mbgb(string, types="gb"):
+
+    string = str(string).strip().replace(',', '')
+
+    if types == "gb":
+        base = 1000000000
+    elif types == "mb":
+        base = 1000000
+    else:
+        base = 1.0
+
+    string = float(string)/base
+
+    return "{0:,.2f}".format(string)
+
+
 def read_config(cfg):
     """
     read config fron ini
@@ -94,15 +127,21 @@ def read_config(cfg):
     check_paths(cfg)
 
     r = {}
-    config = ConfigParser()
+    #config = ConfigParser()
+    config = RawConfigParser()
+    #config.read(cfg, encoding='utf-8')
     config.read(cfg)
 
     for section in config.sections():
         r[section] = {}
 
         for option in config.options(section):
-            value = config.get(section, option).strip().decode("utf-8")
-            r[section][option] = value
+            value = config.get(section, option)
+
+            if type(value) == type(b''):
+                r[section][option] = value.decode("utf-8").strip()
+            else:
+                r[section][option] = value.strip()
 
     return r
 
@@ -125,6 +164,23 @@ def read_tsv(file, sep='\t'):
 def read_table_data(file):
     
     return read_tsv(file,'\t')[0]
+
+
+def read_table_species(filei, sep='\t'):
+ 
+    r = []
+    pd = ""    
+
+    for line in open(file):
+        line = line.strip()
+        
+        if line.startswith("#!"):
+            pd = line..strip("#!")
+        if not line or line.startswith("#"):
+            continue
+        r.append(line.split(sep))
+
+   return r, pd
 
 
 def read_table_findgse(file):
@@ -178,7 +234,7 @@ def read_table_assembly(file):
     return read_tsv(file)
 
 
-def run_report(cfg,
+def run_report(cfg, survey_json,
                table_data, table_species, table_findgse, table_scope, table_kmer, table_assembly,
                figure_base_quality, figure_base_content, figure_base_gc, figure_species, figure_findgse, figure_genomescope, figure_kmer, figure_gc_depth,
                tpl_docx, tpl_html, out_dir
@@ -188,7 +244,7 @@ def run_report(cfg,
     now = datetime.now()
     config = read_config(cfg)
     table_data = read_table_data(table_data)
-    table_species = read_tsv(table_species, '\t')
+    table_species, poll_desc = read_table_species(table_species, '\t')
 
     if config["general"]["assembly"].lower()=="true":
         if table_assembly.lower=="no":
@@ -214,15 +270,15 @@ def run_report(cfg,
         min_genome = min(findgse_genome, scope_genome)
         average_genome = (max_genome+min_genome)*1.0/2
         software="FindGSE和GenomeScope"
-        estimate_size = '{0:,}-{1:,}'.format(min_genome, max_genome)
+        estimate_size = '%s-%s' % (bp2mbgb(min_genome, "mb"), bp2mbgb(max_genome, "mb"))
         heterozygosity = table_scope[1]
     else:
         if table_kmer.lower=="no":
             LOG.debug("Please output the genomic prediction results of Kmerfreq")
         homogeneous = False
         table_kmer = read_table_kmer(table_kmer)
-        software="Kmerfreq"
-        estimate_size= '{:,}'.format(int(table_kmer[4].replace(",","")))
+        software="python的scipy包"
+        estimate_size= bp2mbgb(table_kmer[4].replace(",",""), "mb")
         heterozygosity= float(table_kmer[5].replace("%",""))
         findgse_genome = 0
         scope_genome = 0
@@ -243,36 +299,43 @@ def run_report(cfg,
         "month": now.month,
         "day": now.day,
         "kmer": "",
-        "raw_data": table_data[2],
-        "clean_data": table_data[4],
+        "raw_data": bp2mbgb(table_data[1], "gb"),
+        "clean_data": bp2mbgb(table_data[3], "gb"),
         "estimate_size": estimate_size,
         "heterozygosity": '{}%'.format(heterozygosity),
-        "software": software,
+        "estisoft": software,
         "homogeneous": homogeneous,
-        "assembly_size": '{:,}'.format(int(table_assembly[6][3])),
-        "findgse_genome": '{:,}'.format(findgse_genome),
-        "scope_genome": '{:,}'.format(scope_genome),
-        "average_genome": '{:,}'.format(average_genome),
-        "max_genome": '{:,}'.format(max_genome),
-        "min_genome": '{:,}'.format(min_genome),
+        "assembly_size": bp2mbgb(table_assembly[6][3], "mb"),
+        "findgse_genome": bp2mbgb(findgse_genome, "mb"),
+        "scope_genome": bp2mbgb(scope_genome, "mb"),
+        "average_genome": bp2mbgb(average_genome, "mb"),
+        "max_genome": bp2mbgb(max_genome, "mb"),
+        "min_genome": bp2mbgb(min_genome, "mb"),
         "table_data": table_data,
         "table_species": table_species,
-        "pollution_description": "",
+        "pollution_description": poll_desc,
         "table_findgse": table_findgse,
         "table_scope": table_scope,
         "table_kmer": table_kmer,
         "assembly": assembly,
         "table_assembly": table_assembly,
-        "scaffold_length":'{:,}'.format(int(table_assembly[6][3])),
-        "scaffold_n50": '{:,}'.format(int(table_assembly[0][3])),
-        "scaffold_number":'{:,}'.format(int(table_assembly[6][4])),
-        "contig_length":'{:,}'.format(int(table_assembly[6][1])),
-        "contig_n50":'{:,}'.format(int(table_assembly[0][1])),
-        "contig_number":'{:,}'.format(int(table_assembly[6][2])),
-        "depth_description": ""
+        "scaffold_length": bp2mbgb(table_assembly[6][3], "bp"),
+        "scaffold_n50": bp2mbgb(table_assembly[0][3], "bp"),
+        "scaffold_number": bp2mbgb(table_assembly[6][4], "bp"),
+        "contig_length": bp2mbgb(table_assembly[6][1], "bp"),
+        "contig_n50": bp2mbgb(table_assembly[0][1], "bp"),
+        "contig_number": bp2mbgb(table_assembly[6][2], "bp"),
+        "depth_description": "",
+        "software": {},
+        "database": {}
     }
 
     r.update(config["general"])
+
+    with open(survey_json) as fh:
+        js = json.load(fh)
+        for k in js:
+            r[k].update(js[k])
 
     tpl = DocxTemplate(tpl_docx)
 
@@ -306,14 +369,25 @@ def run_report(cfg,
             shutil.rmtree(temp)
         shutil.copytree(os.path.join(tpl_html, i), temp)
 
-    for i in figure_variable:
+    for i in read_picture(figure_variable):
         shutil.copy(i, os.path.join(out_dir, "images/"))
 
     for j in ["index.html", "main.html"]:
-        tpl = Template(open(os.path.join(tpl_html, j)).read().decode("utf-8"))
+        temp = open(os.path.join(tpl_html, j)).read()
+        if type(temp) == type(b''):
+            temp = temp.decode('utf-8')
+        tpl = Template(temp)
 
         with open(os.path.join(out_dir, j), "w") as fh:
-            fh.write(tpl.render(r).encode("utf-8"))
+            line = tpl.render(r)
+            if type(line) == type(b''):
+                line = line.decode('utf-8')
+            try:
+                fh.write(line)
+            except:
+                reload(sys)
+                sys.setdefaultencoding("utf-8")
+                fh.write(line)
 
 #     html_report
 
@@ -323,6 +397,7 @@ def run_report(cfg,
 def report(args):
     run_report(
         cfg=args.cfg,
+        survey_json=args.survey,
         table_data=args.data,
         table_species=args.species,
         table_findgse=args.gse,
@@ -348,6 +423,10 @@ def add_report_args(parser):
     parser.add_argument("cfg", help="Input configuration file.")
     parser.add_argument("-o", "--out", metavar='FILE', type=str, required=True,
         help="Output result path.")
+
+    json_group = parser.add_argument_group(title="Json", )
+    json_group.add_argument("--survey", metavar='FILE', type=str, required=True,
+        help="Input the jison file for survey analysis: survey.json.")
 
     table_group = parser.add_argument_group(title="Tables", )
     table_group.add_argument("--data", metavar='FILE', type=str, required=True,
