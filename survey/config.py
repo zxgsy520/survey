@@ -6,7 +6,7 @@ ROOT = "/nextomics/Pipeline/Survey/v1.1.1/"
 SCRIPTS = os.path.join(ROOT, "scripts")
 TEMPLATES = os.path.join(ROOT, "templates") 
 BIN = os.path.join(ROOT, "survey")
-TAXONOMY = os.path.join(TEMPLATES, "species.taxonomy")
+TAXONOMY = os.path.join(TEMPLATES, "species.taxonomy.gz")
 
 #PYNTHON_bin
 PYTHON_BIN="/export/software/Bases/Python/v2.7.15/bin"
