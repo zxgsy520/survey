@@ -10,21 +10,29 @@ import argparse
 
 LOG = logging.getLogger(__name__)
 
-__version__ = "0.1.0"
+__version__ = "1.0.0"
 __author__ = ("Xingguo Zhang",)
-__email__ = "113178210@qq.com"
+__email__ = "invicoun@foxmail.com"
 __all__ = []
 
 
 def read_tsv(file, sep="\t"):
 
-    for line in open(file):
+    if file.endswith(".gz"):
+        fh = gzip.open(file)
+    else:
+        fh = open(file)
+
+    for line in fh:
+        if isinstance(line, bytes):
+            line = line.decode('utf-8')
         line = line.strip()
 
         if not line or line.startswith("#"):
             continue
 
         yield line.split(sep)
+    fh.close()
 
 
 def best_blast(file):
