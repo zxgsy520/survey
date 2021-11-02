@@ -27,8 +27,8 @@ SCORE_HET_FOLD_DIFFERENCE = 10
 VERBOSE = 0
 
 ## Suppress the warnings if the modeling goes crazy, those are in try/catch blocks anyways
-options(warn=-1)
-
+#options(warn=-1)
+options(bitmapType='cairo')
 ## Colors for plots
 COLOR_BGCOLOR  = "light grey"
 COLOR_HIST     = "#56B4E9"
@@ -619,7 +619,7 @@ if(length(args) < 4) {
 
 	dir.create(foldername, showWarnings=FALSE)
 
-	kmer_prof <- read.csv(file=histfile,sep=" ", header=FALSE) 
+	kmer_prof <- read.csv(file=histfile, sep="\t", header=FALSE) 
 
     minkmerx = 1;
     if (kmer_prof[1,1] == 0) {
