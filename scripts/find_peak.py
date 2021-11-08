@@ -11,7 +11,7 @@ from scipy.signal import find_peaks
 
 LOG = logging.getLogger(__name__)
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 __author__ = ("Xingguo Zhang",)
 __email__ = "invicoun@foxmail.com"
 __all__ = []
@@ -28,7 +28,7 @@ def read_depth(file):
 
         line = line.split('\t')
 
-        yield float(line[3]),  float(line[4])
+        yield float(line[3]), float(line[4])
 
 
 def stat_hist(data, bin=50):
@@ -72,6 +72,7 @@ def find_peak(data):
         ypeak.append(y[i])
 
     maxy = max(ypeak)
+
     peakx = []
     temp = 0
     for i in range(len(ypeak)):
@@ -91,17 +92,24 @@ def find_peaked(file, bin=50):
 
     gcdict = stat_hist(gcs, bin)
     depthdict = stat_hist(depths, bin)
-    gcpeak = find_peak(gcdict)
-    depthpeak = find_peak(depthdict)
+    try:
+       gcpeak = find_peak(gcdict)
+    except:
+       gcpeak = [sum(gcs)/len(gcs)]
+       
+    try:
+       depthpeak = find_peak(depthdict)
+    except:
+       depthpeak = [sum(depths)/len(depths)]
 
     if len(gcpeak) ==1 and len(depthpeak)==1:
-        print("样本基因组GC-Depth无明显分离聚团现象，GC含量在{gc}%左右，\
-样本的Depth在{depth}X左右，样本无明显污染可以进行后续分析".format(
+        print("样本基因组GC-Depth无明显分离聚团现象，GC含量在{gc:.2f}%左右，\
+样本的Depth在{depth:,.2f}X左右，样本无明显污染可以进行后续分析".format(
               gc=gcpeak[0], depth=depthpeak[0])
         )
     elif len(gcpeak) == 1:
         print("样本基因组GC-Depth有明显分离聚团现象，GC含量无明显分离现象，\
-GC含量在{gc}%左右，样本Depth有明显分离，样本可能为高杂合".format(
+GC含量在{gc:.2f}%左右，样本Depth有明显分离，样本可能为高杂合".format(
                gc=gcpeak[0])
         )
     else:
