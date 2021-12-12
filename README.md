@@ -6,7 +6,7 @@ Third-party
 -----------
 
 survey package includes some third-party software:
-* [python](https://www.python.org/)
+* [python](https://www.python.org/) (使用python3运行较多，使用python2也是可以运行的，撰写的充分考虑了兼容问题)
 * * Three-party python package
   * [pysam](https://pypi.org/project/pysam/)
   * [matplotlib](https://matplotlib.org/)
