@@ -17,9 +17,9 @@ from survey.parser import add_kmer_denovo_args
 LOG = logging.getLogger(__name__)
 
 LOG = logging.getLogger(__name__)
-__version__ = "2.0.0"
+__version__ = "2.0.1"
 __author__ = ("Xingguo Zhang",)
-__email__ = "1131978210@qq.com"
+__email__ = "invicoun@foxmail.com"
 __all__ = []
 
 def create_jellyfish_tasks(reads, name, kingdom, kmer_length, thread, job_type, work_dir, out_dir, maximal=1000):
@@ -33,14 +33,18 @@ def create_jellyfish_tasks(reads, name, kingdom, kmer_length, thread, job_type, 
         "version": get_version(SOFTWARE_VERSION["kmc"]),
         "option": "off"
     }
+
+    id = "jellyfish"
     prefix = []
     jelly = []
-    n = 1
+    n = 0
+    id_format = "%s_{:0>%s}" % (id, len(str(len(reads))))
+
     for i in reads:
-        prefix.append(os.path.basename(i))
-        jelly.append("jellyfish_%s/%s.jellyfish.jf" % (n, os.path.basename(i)))
         n += 1
-    id = "jellyfish"
+        prefix.append(os.path.basename(i))
+        jid = id_format.format(n)
+        jelly.append("%s/%s.jellyfish.jf" % (jid, os.path.basename(i)))
 
     tasks = ParallelTask(
         id=id,
