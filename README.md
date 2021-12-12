@@ -7,6 +7,10 @@ Third-party
 
 survey package includes some third-party software:
 * [python](https://www.python.org/)
+* * Three-party python package
+  * [pysam](https://pypi.org/project/pysam/)
+  * [matplotlib](https://matplotlib.org/)
+  * [numpy](https://numpy.org/doc/stable/index.html)
 * [R](https://www.r-project.org/)
 * [fastp](https://github.com/OpenGene/fastp)
 * [fastqc](https://github.com/s-andrews/FastQC)
@@ -23,4 +27,14 @@ survey package includes some third-party software:
 * [genomescope](https://github.com/schatzlab/genomescope)
 * [findGSE](https://github.com/schneebergerlab/findGSE)
 
-
+## Installation
+```
+git clone https://github.com/zxgsy520/survey.git
+cd  survey/bin
+chmod 755 *
+cd ..
+chmod 755 survey.py
+cd survey
+#Modify software configuration files, or add related software to environment variables.
+vi config.py
+```
