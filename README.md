@@ -11,6 +11,7 @@ survey package includes some third-party software:
   * [pysam](https://pypi.org/project/pysam/)
   * [matplotlib](https://matplotlib.org/)
   * [numpy](https://numpy.org/doc/stable/index.html)
+  * [scipy](https://github.com/scipy/scipy)
 * [R](https://www.r-project.org/)
 * [fastp](https://github.com/OpenGene/fastp)
 * [fastqc](https://github.com/s-andrews/FastQC)
